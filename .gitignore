@@ -1,0 +1,136 @@
+
+/vdnboot/src/main/webapp/
+/vdnboot/src/main/resources/VAADIN/polymer/bower_components/
+/vdnboot/src/main/resources/VAADIN/themes/vvdn/styles.css
+/vdnboot/src/main/resources/VAADIN/themes/lm/styles.css
+/vdnboot/src/main/resources/VAADIN/polymer/bower_components
+/vdnboot/src/main/resources/VAADIN/polymer/elements
+/vdnboot/src/main/resources/VAADIN/widgetsets
+.projectKnowledge
+
+##########
+## misc ##
+##########
+
+*s3db
+misc/claraxsd-maven-plugin
+catalina.home_IS_UNDEFINED
+*.deb
+debs/
+
+##########
+## Java ##
+##########
+
+hs_err_pid*.log
+catalina.home*/
+
+
+############
+## Python ##
+############
+
+*.pyc
+
+###########
+## Maven ##
+###########
+
+target
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+
+############
+## Spring ##
+############
+
+.springBeans
+
+############
+## IDEA   ##
+############
+
+*.iml
+.idea
+
+#############
+## Eclipse ##
+#############
+
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+*.pydevproject
+.metadata
+.gradle
+#bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# TeXlipse plugin
+.texlipse
+
+
+##############
+## Netbeans ##
+##############
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+#############
+## Windows ##
+#############
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
