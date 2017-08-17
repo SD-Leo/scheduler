@@ -23,7 +23,6 @@ public class Exec implements Runnable {
         new Thread(this).start();
     }
 
-
     @Override
     public void run() {
         while (true) {
@@ -31,6 +30,7 @@ public class Exec implements Runnable {
             if (current != null) {
                 try {
                     current.getCallable().call();
+                    continue;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

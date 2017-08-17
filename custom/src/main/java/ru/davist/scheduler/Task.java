@@ -5,12 +5,12 @@ import java.util.concurrent.Callable;
 
 /**
  * 16/08/17
+ * <p>
+ * Задача, которую нужно выполнить в заданное время
  *
- * @author danil
+ * @author StarovoytovD
  */
 public class Task {
-
-    private LocalDateTime create;
 
     private LocalDateTime time;
 
@@ -18,8 +18,14 @@ public class Task {
 
     private String name;
 
+    /**
+     * Порядковый номер задачи
+     * <p>
+     * Вряд ли это поле должно быть в этом объекте
+     */
+    private long orderNumber;
+
     public Task() {
-        this.create = LocalDateTime.now();
     }
 
     public Task(LocalDateTime time) {
@@ -30,14 +36,6 @@ public class Task {
     public Task(LocalDateTime time, Callable<String> callable) {
         this(time);
         this.callable = callable;
-    }
-
-    public LocalDateTime getCreate() {
-        return create;
-    }
-
-    public void setCreate(LocalDateTime create) {
-        this.create = create;
     }
 
     public LocalDateTime getTime() {
@@ -62,5 +60,13 @@ public class Task {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(long orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }

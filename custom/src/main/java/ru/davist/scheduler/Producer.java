@@ -17,17 +17,25 @@ public class Producer implements Runnable {
 
     private Queue queue;
     private String msg;
-    private String schedule;
-    private int seconds;
 
-    public Producer(Queue queue, String msg, String schedule) {
+    /**
+     * Время когда должна выполниться задача
+     */
+    private String triggerTime;
+
+    /**
+     * Задержка в секундах перед тем как поток добавит задачу
+     */
+    private int delay;
+
+    public Producer(Queue queue, String msg, String triggerTime) {
         this.queue = queue;
         this.msg = msg;
-        this.schedule = schedule;
+        this.triggerTime = triggerTime;
     }
-    public Producer(Queue queue, String msg, String schedule, int seconds) {
-        this(queue, msg, schedule);
-        this.seconds = seconds;
+    public Producer(Queue queue, String msg, String triggerTime, int delay) {
+        this(queue, msg, triggerTime);
+        this.delay = delay;
     }
 
     public void start() {
@@ -37,14 +45,13 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         try {
-            Thread.sleep(seconds * 1000);
-            Task task = new Task(getTime(schedule));
+            Thread.sleep(delay * 1000);
+            Task task = new Task(getTime(triggerTime));
             task.setName(msg);
             task.setCallable(() -> {
-                print(msg + " !!!!");
+                print(msg + " !!!! " + task.getOrderNumber());
                 return "";
             });
-
 
             queue.add(task);
         } catch (InterruptedException e) {

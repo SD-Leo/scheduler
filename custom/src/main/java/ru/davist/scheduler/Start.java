@@ -3,44 +3,43 @@
  */
 package ru.davist.scheduler;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
+ * Класс запускающий приложени
+ *
  * @author StarovoytovD
  */
 public class Start {
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+//    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public static void main(String[] args) {
         new Start().run();
     }
 
-//    private ConcurrentLinkedQueue<Task> queue;
-//    private PriorityQueue<Task> priorityQueue;
     private Queue queue;
-
 
     private void run() {
 
         queue = new Queue();
-        Exec e = new Exec(queue);
-        e.start();
+        new Exec(queue).start();
 
 
-//
-        new Producer(queue, "first", "22:25:00", 2).start();
-        delay(10000);
-        new Producer(queue, "second", "22:25:00", 3).start();
-        delay(100001);
-        new Producer(queue, "third", "22:25:00", 4).start();
-        delay(100002);
-        new Producer(queue, "fourth", "22:25:00", 5).start();
-        delay(100003);
-        new Producer(queue, "fifth", "22:25:00", 6).start();
+        String triggerTime = "20:44:00";
+
+        List<Producer> producers = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            producers.add(new Producer(queue, String.valueOf(i), triggerTime, 5));
+        }
+
+        producers.forEach(Producer::start);
+//        new Producer(queue, "first", "20:44:00", 4).start();
+//        new Producer(queue, "second", "20:44:00", 4).start();
+//        new Producer(queue, "third", "20:44:00", 4).start();
+//        new Producer(queue, "fourth", "20:44:00", 4).start();
+//        new Producer(queue, "fifth", "20:44:00", 4).start();
 //        delay();
 //        delay();
 //        delay();
@@ -75,21 +74,20 @@ public class Start {
     }
 
 
-    private LocalDateTime getTime(String time) {
-        return LocalDateTime.of(LocalDate.now(), LocalTime.parse(time, formatter));
-    }
-
-    private void delay(int count) {
-        int i = 0;
-        for (int j = 0; j < 100000; j++) {
-            for (int k = 0; k < count; k++) {
-                i = j + k;
-            }
-
-        }
-        System.out.println(i);
-    }
-
+//    private LocalDateTime getTime(String time) {
+//        return LocalDateTime.of(LocalDate.now(), LocalTime.parse(time, formatter));
+//    }
+//
+//    private void delay(int count) {
+//        int i = 0;
+//        for (int j = 0; j < 100000; j++) {
+//            for (int k = 0; k < count; k++) {
+//                i = j + k;
+//            }
+//
+//        }
+//        System.out.println(i);
+//    }
 
 
 }
