@@ -49,8 +49,8 @@ public class Producer implements Runnable {
             Task task = new Task(getTime(triggerTime));
             task.setName(msg);
             task.setCallable(() -> {
-                print(" !!!! " + msg + task.getOrderNumber());
-                return "";
+                print("!!!! " + task.getOrderNumber() + " msg: " + msg);
+                return msg;
             });
 
             queue.add(task);
