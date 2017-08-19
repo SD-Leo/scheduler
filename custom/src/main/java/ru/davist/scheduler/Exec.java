@@ -5,6 +5,8 @@ package ru.davist.scheduler;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author StarovoytovD
@@ -14,9 +16,11 @@ public class Exec implements Runnable {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     private Queue queue;
+    private ExecutorService executorService;
 
     public Exec(Queue queue) {
         this.queue = queue;
+        executorService = Executors.newSingleThreadExecutor();
     }
 
     public void start() {
@@ -29,7 +33,7 @@ public class Exec implements Runnable {
             Task current = queue.checkAndPoll();
             if (current != null) {
                 try {
-                    current.getCallable().call();
+                    executorService.submit(current.getCallable());
                     continue;
                 } catch (Exception e) {
                     e.printStackTrace();

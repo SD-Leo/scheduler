@@ -49,7 +49,7 @@ public class Producer implements Runnable {
             Task task = new Task(getTime(triggerTime));
             task.setName(msg);
             task.setCallable(() -> {
-                print(msg + " !!!! " + task.getOrderNumber());
+                print(" !!!! " + msg + task.getOrderNumber());
                 return "";
             });
 
