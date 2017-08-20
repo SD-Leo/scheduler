@@ -26,25 +26,18 @@ public class Queue {
 
     public synchronized void add(Task task) {
         task.setOrderNumber(orderNumber++);
-//        LocalDateTime now = LocalDateTime.now();
         print(task.getName() + " " + task.getOrderNumber() + " " + task.getTime().format(DateTimeFormatter.ISO_TIME));
         queue.add(task);
-//        Iterator<Task> iterator = queue.iterator();
-//        while (iterator.hasNext()) {
-//            System.out.println(iterator.next().getName());
-//        }
     }
 
-    public synchronized Task checkAndPoll() {
+    public Task checkAndPoll() {
         Task task = queue.peek();
-        if (task != null) {
-            LocalDateTime now = LocalDateTime.now();
-            if (task.getTime().compareTo(now) <= 0) { // Даже если время задачи уже прошло
-//                print("Show Time!");
+        if (task != null && task.getTime().compareTo(LocalDateTime.now()) <= 0) { // Даже если время задачи уже прошло
+            synchronized (this) {
                 task = queue.poll();
-            } else {
-                task = null;
             }
+        } else {
+            task = null;
         }
         return task;
     }
